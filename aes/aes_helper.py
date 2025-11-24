@@ -1,4 +1,4 @@
-from .aes_constant import *
+from aes_constant import *
 
 
 def byte_to_state(block: bytearray) -> bytearray:
