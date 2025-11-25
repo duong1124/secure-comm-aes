@@ -17,13 +17,12 @@
 - Run `sender.py`, take `iv`, `ciphertext` and `key` (hex)
 - Receiver runs `receiver.py`, re-enter those three. We would receive the right `plaintext` if entered right `key`, else error or "trash" text.
 
-
 # Future Directions
-- Add more AES modes:
-  - CTR, GCM, ...
-- Add more types of `plaintext` (e.g., audio/image/...) and theirs utils.
-- Add benchmarks and correctness tests.
+- Add more types of `plaintext` (e.g., image/...) and theirs utils.
+  - Add benchmarks and correctness tests.
 - Evaluate AES inter-mode of operations by visualizing its decrypted image.
+  - CTR/ECB (weak in secure), GCM, ...
   - How should we evaluate it? By which metrics? At which context/case?
-  - How many type/case of image should we evaluate?
-- Elevate use case (e.g., end-to-end demo ... )
+  - How many type/case of image (gray scale vs 3 channel) should we evaluate?
+- MATLAB implementation
+- Elevate use case (e.g., end-to-end demo/chat room ... )
