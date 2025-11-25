@@ -1,5 +1,4 @@
-import struct
-from aes import AES
+from src_py.aes import AES
 
 
 class AES_GCM(object):
@@ -216,11 +215,12 @@ class AES_GCM(object):
 
         len_iv_bits = len(self._IV) * 8
         pad_len = (16 - (len(self._IV) % 16)) % 16
+        len_iv_bits_bytes = len_iv_bits.to_bytes(8, 'big')
         s_block = (
             self._IV +
             b'\x00' * pad_len +
             b'\x00' * 8 +
-            struct.pack('>Q', len_iv_bits)
+            len_iv_bits_bytes
         )
         return self.ghash_func(s_block, self.H)
 
@@ -254,11 +254,14 @@ class AES_GCM(object):
         len_A_bits = len(self._A) * 8
         len_C_bits = len(cipher) * 8
 
+        len_A_bits_bytes = len_A_bits.to_bytes(8, 'big')
+        len_C_bits_bytes = len_C_bits.to_bytes(8, 'big')
+
         A_gen = (
             self._A + b'\x00' * v +
             cipher + b'\x00' * u +
-            struct.pack('>Q', len_A_bits) +
-            struct.pack('>Q', len_C_bits)
+            len_A_bits_bytes +
+            len_C_bits_bytes
         )
 
         S = self.ghash_func(A_gen, self.H)
@@ -393,6 +396,9 @@ class AES_GCM(object):
             X = IV || counter_32
         """
         iv_part = X[:-4]
-        counter_part = struct.unpack('>I', X[-4:])[0]
+        # counter_part = struct.unpack('>I', X[-4:])[0]
+        counter_part = int.from_bytes(X[-4:], 'big')
         counter_part = (counter_part + 1) & 0xFFFFFFFF
-        return iv_part + struct.pack('>I', counter_part)
+
+        # return iv_part + struct.pack('>I', counter_part)
+        return iv_part + counter_part.to_bytes(4, 'big')
