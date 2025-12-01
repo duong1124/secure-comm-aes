@@ -34,7 +34,7 @@ class AES_CBC:
             # XOR with previous ciphertext block (or IV for first block)
             xored_block = xor_bytes(block, previous_block)
             # Encrypt the XORed block
-            encrypted_block = self.aes_cbc.encrypt(bytearray(xored_block), bytearray(key))
+            encrypted_block = self.aes_cbc.encrypt(bytearray(xored_block))
             ciphertext += bytes(encrypted_block)
             previous_block = encrypted_block
 
