@@ -1,4 +1,4 @@
-from aes_ops import decrypt_cbc
+from src_py.aes_ops import decrypt_cbc
 
 def main():
     key_hex = input("Enter key (hex): ").strip()
