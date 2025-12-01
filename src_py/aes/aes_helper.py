@@ -54,7 +54,7 @@ def rotate(word):
     #    word[i] = word[i + 1]
     # word[3] = c
     # return word
-    return  (word, 1)
+    return circular_shift_left(word, 1)
 
 
 def get_rcon_value(num):

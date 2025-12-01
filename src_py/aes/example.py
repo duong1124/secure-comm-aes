@@ -1,4 +1,4 @@
-from aes import AES
+from src_py.aes import AES
 
 input_bytes = b"exampleplaintext" # 16 bytes
 key = b"thisisakey123456"         # 16 bytes
