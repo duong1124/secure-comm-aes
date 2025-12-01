@@ -1,4 +1,4 @@
-from aes_ops import encrypt_cbc
+from src_py.aes_ops import encrypt_cbc
 
 def main():
     key = b"thisisakey123456"
