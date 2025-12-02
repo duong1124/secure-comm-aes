@@ -1,5 +1,5 @@
 from src_py.aes import AES
-
+from src_py.aes_ops.helper import xor_bytes
 
 class AES_GCM(object):
     """
@@ -145,7 +145,7 @@ class AES_GCM(object):
 
         for i in range(num_blocks):
             block = x[i * 16: (i + 1) * 16]
-            y = self._xor(y, block)
+            y = xor_bytes(y, block)
             y = self.mul(y, H)
 
         return y
@@ -184,7 +184,7 @@ class AES_GCM(object):
         for i in range(n):
             chunk = x[i * 16: (i + 1) * 16]
             keystream = self._aes_encrypt(cb)
-            y = self._xor(chunk, keystream[:len(chunk)])
+            y = xor_bytes(chunk, keystream[:len(chunk)])
             out += y
             cb = self.incre_func(cb)
 
@@ -345,31 +345,6 @@ class AES_GCM(object):
         J1 = self.incre_func(J0)
         decrypted = self.GCTR(J1, ciphertext)
         return decrypted
-
-    @staticmethod
-    def _xor(a: bytes, b: bytes) -> bytes:
-        """
-        Compute the bitwise XOR of two byte strings.
-
-        Parameters
-        ----------
-        a : bytes
-            First operand.
-        b : bytes
-            Second operand.
-
-        Returns
-        -------
-        bytes
-            A new bytes object where each byte is the XOR of the corresponding
-            bytes in 'a' and 'b'.
-
-        Notes
-        -----
-        The two inputs are zipped; if they have different lengths, the result
-        length will be that of the shorter input.
-        """
-        return bytes([x ^ y for x, y in zip(a, b)])
 
     @staticmethod
     def incre_func(X: bytes) -> bytes:

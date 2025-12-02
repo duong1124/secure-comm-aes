@@ -1,6 +1,7 @@
 import os
 
 from src_py.aes import AES
+from src_py.aes_ops.helper import xor_bytes, pkcs7_pad, pkcs7_unpad
 
 
 class AES_CBC:
@@ -81,27 +82,3 @@ def decrypt_cbc(ciphertext: bytes, key: bytes, iv: bytes) -> bytes:
     aes_instance = AES(key)
     aes_cbc = AES_CBC(aes_instance)
     return aes_cbc.decrypt(ciphertext, key, iv)
-
-
-def pkcs7_pad(data: bytes, block_size: int = 16) -> bytes:
-    """Apply PKCS#7 padding to data."""
-    padding_length = block_size - (len(data) % block_size)
-    padding = bytes([padding_length] * padding_length)
-    return data + padding
-
-
-def pkcs7_unpad(data: bytes) -> bytes:
-    """Remove PKCS#7 padding from data."""
-    if not data:
-        raise ValueError("Cannot unpad empty data")
-    padding_length = data[-1]
-    if padding_length > len(data) or padding_length == 0:
-        raise ValueError("Invalid padding")
-    # Verify padding
-    if data[-padding_length:] != bytes([padding_length] * padding_length):
-        raise ValueError("Invalid padding")
-    return data[:-padding_length]
-
-
-def xor_bytes(a: bytes, b: bytes) -> bytes:
-    return bytes(x ^ y for x, y in zip(a, b))
