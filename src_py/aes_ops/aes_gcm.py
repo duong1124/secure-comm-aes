@@ -47,24 +47,6 @@ class AES_GCM(object):
         self.H = self._aes_encrypt(b'\x00' * 16)
 
     def _aes_encrypt(self, block: bytes) -> bytes:
-        """
-        Encrypt a single 16-byte block using AES in ECB mode.
-
-        Parameters
-        ----------
-        block : bytes
-            A 16-byte input block.
-
-        Returns
-        -------
-        bytes
-            The 16-byte ciphertext block: AES_K(block).
-
-        Notes
-        -----
-        This is a low-level wrapper around the underlying AES implementation.
-        It does not perform any padding or mode logic.
-        """
         return self.aes.encrypt(block)
 
     def mul(self, x: bytes, y: bytes) -> bytes:

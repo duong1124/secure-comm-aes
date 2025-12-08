@@ -7,8 +7,8 @@ def main():
     message = input("Enter plaintext: ")
     plaintext = message.encode("utf-8")
 
-   # iv = input("Enter iv:")
-   # ciphertext, iv = encrypt_cbc(plaintext, key, iv=None)
+    # iv = input("Enter iv:")
+    # ciphertext, iv = encrypt_cbc(plaintext, key, iv=None)
     ciphertext = encrypt_ecb(key, plaintext)
 
     print("Private key:            ", key.hex())

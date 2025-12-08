@@ -1,0 +1,24 @@
+paths:
+  image_path: "D:\\HUST\\Semesters\\2025.1\\Truyền thông vô tuyến\\aes-secure-comm\\non_Dicom_image.jpg"
+
+crypto:
+  key: "sixteen bit key."
+  iv_cbc: "16byte_iv_forcbc"
+  iv_gcm: "12byte_ivgcm"
+  aad: "GCM_auth_data"
+  tag_length: 16
+  block_size: 16
+
+mitm:
+  avoid_last_blocks_ecb: 1
+  avoid_last_blocks_cbc: 2
+  avoid_last_blocks_gcm: 0
+  tamper_start_ratio: 0.333  # Start tampering at 1/3 of image
+  tamper_end_ratio: 0.667    # End tampering at 2/3 of image
+  xor_mask: 0xFF  # XOR mask for tampering
+
+visualization:
+  figure_size_comparison: [15, 10]
+  figure_size_blocked: [15, 6]
+  histogram_bins: 256
+  histogram_range: [0, 255]

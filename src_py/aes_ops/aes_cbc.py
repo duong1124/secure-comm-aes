@@ -62,7 +62,7 @@ class AES_CBC:
         for i in range(0, len(ciphertext), self.block_size):
             block = ciphertext[i:i + self.block_size]
             # Decrypt the block
-            decrypted_block = self.aes_cbc.decrypt(bytearray(block), bytearray(key))
+            decrypted_block = self.aes_cbc.decrypt(bytearray(block))
             # XOR with previous ciphertext block (or IV for first block)
             plaintext_block = xor_bytes(bytes(decrypted_block), previous_block)
             plaintext += plaintext_block
