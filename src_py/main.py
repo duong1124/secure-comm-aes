@@ -51,9 +51,9 @@ def main():
     )
 
     parser.add_argument(
-        '--eval',
+        '--benchmark',
         action='store_true',
-        help='Run performance eval'
+        help='Run performance benchmark'
     )
 
     parser.add_argument(

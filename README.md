@@ -6,7 +6,7 @@
 ## `aes_ops`
 - AES mode of operation, each designed for different contexts and security requirements.
 - Mode of operation list:
-  - `aes_ecb` - Electronic Codebook mode
+  - `aes_ecb.py` - Electronic Codebook mode
   - `aes_cbc.py` - Cipher Block Chaining mode
   - `aes_gcm.py` - Galios/Counter mode
 ---
@@ -16,6 +16,17 @@
 - Run `sender.py`, take `iv`, `ciphertext` and `key` (hex).
 - Receiver runs `receiver.py`, re-enter those three. We would receive the right `plaintext` if entered right `key`, else error or "trash" text.
 ---
+
+# Evaluation
+Run inter operation modes (ECB, CBC, GCM) of AES evaluation/benchmarking at `src_py\main.py`.
+```bash
+python -m src_py.main --all
+```
+- `--eavesdrop`: Run eavesdropping/confidentiality evaluation.
+- `--mitm`: Run man-in-the-middle (MITM)/integrity evaluation.
+- `--benchmark`: Run performance evaluation (encryption/decryption latency and throughput).
+- `--all`: Run all tests in sequence:
+- `--config` Config file path, default at root dir.
 
 # How to run
 
