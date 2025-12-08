@@ -1,11 +1,11 @@
 # Secure Communication using AES
 
 ## `aes`
-- AES implementation, an example for its API can be viewed in `example.py`.
+- AES implementation, an example for its interface can be viewed in `example.py`.
 
 ## `aes_ops`
-- AES mode of operation, each designed for different contexts and security requirements.
-- Mode of operation list:
+- AES modes of operation, each designed for different contexts and security requirements.
+- Modes of operation list:
   - `aes_ecb.py` - Electronic Codebook mode
   - `aes_cbc.py` - Cipher Block Chaining mode
   - `aes_gcm.py` - Galios/Counter mode
@@ -18,7 +18,7 @@
 ---
 
 # Evaluation
-Run inter operation modes (ECB, CBC, GCM) of AES evaluation/benchmarking at `src_py\main.py`.
+Run AES mode evaluation/benchmarking (ECB, CBC, GCM) at `src_py\main.py`.
 ```bash
 python -m src_py.main --all
 ```
